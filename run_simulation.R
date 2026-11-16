@@ -1,7 +1,7 @@
 source("drm_selection.R")
 source("data_generating.R")
 source("benchmark_aic_bic.R")
-source("main.R")
+source("adaptive_basis.R")
 library(dplyr)
 
 run_linear_simulation <- function(structure = "Additional main effects", truth = "M2", snr = 1,
