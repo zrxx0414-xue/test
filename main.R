@@ -25,7 +25,11 @@ fit_adaptive_basis <- function(data, kernel_bw = "adaptive", dim_basis = "adapti
       unique_data[[i]][j,2] <- sum(data[[i]] == unique_pt[j])
     }
   }
-
+  if (identical(kernel_bw, "silverman")) {
+    kernel_bw <- vapply(data, function(x) {
+      0.9 * min(sd(x), IQR(x) / 1.34) * length(x)^(-1/5)
+    }, numeric(1))
+  }
   if (identical(kernel_bw, "adaptive")) kernel_bw <- adaptive_bw(data = data, ref_model = "normal")
   if (length(kernel_bw) == 1L) kernel_bw <- rep(kernel_bw, m+1)
   if (!is.numeric(kernel_bw) || length(kernel_bw) != m+1 || any(!is.finite(kernel_bw) | kernel_bw <= 0))
