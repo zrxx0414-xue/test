@@ -1,0 +1,1 @@
+stop("This additional-SNR entry point is retired. Source run_simulation.R and use run_linear_simulation(snr_by = ...). All three modes now use full-signal SNR; old additional-SNR results are not directly comparable.")
